@@ -17,5 +17,6 @@
   },
   "homepage": "https://github.com/reeeeeee-dev/prime-locker#readme",
   "dependencies": {
+    "express": "^4.17.1"
   }
 }
