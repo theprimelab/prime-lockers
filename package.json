@@ -1,0 +1,21 @@
+{
+  "name": "prime-locker",
+  "version": "1.0.0",
+  "description": "Prime Lab locker control.",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reeeeeee-dev/prime-locker.git"
+  },
+  "author": "Reetik Patel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reeeeeee-dev/prime-locker/issues"
+  },
+  "homepage": "https://github.com/reeeeeee-dev/prime-locker#readme",
+  "dependencies": {
+  }
+}
