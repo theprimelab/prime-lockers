@@ -7,6 +7,7 @@ const http = require('http');
 
 // My Scripts
 const locker = require('./locker');
+const PrimeLockers = require('./server/PrimeLockers');
 
 console.log("Set.");
 
@@ -49,15 +50,23 @@ app.use('/public', express.static(__dirname + 'public'));
 app.use('/ecv', function(req, res) { res.sendStatus(200); });
 
 //-------------------------------------
-// Public API
+// Public API - Server
 //-------------------------------------
-
 app.get('/version', function(req, res) {
     res.json({ version: version });
 });
 
 //-------------------------------------
-// Public API
+// Public API - Lockers
+//-------------------------------------
+app.get('/api/locker/:lockerId', PrimeLockers.handler.get);
+
+app.get('/api/locker', PrimeLockers.handler.getAll);
+
+
+
+//-------------------------------------
+// Finally...
 //-------------------------------------
 app.use('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
