@@ -6,7 +6,7 @@ const express = require('express');
 const http = require('http');
 
 // My Scripts
-const locker = require('./locker');
+const locker = require('./server/objects/PrimeLocker');
 const PrimeLockers = require('./server/PrimeLockers');
 
 console.log("Set.");
