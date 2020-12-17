@@ -12,7 +12,6 @@ let locker = function(pins) {
             this.lock.writeSync(0);
         }, 500);
     }
-
 }
 
 function parseBinary(num) {
