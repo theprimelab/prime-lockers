@@ -1,13 +1,11 @@
 console.log("Bump.");
 
 // Libraries
-const GPIO = require('onoff').GPIO;
 const express = require('express');
 const http = require('http');
 
 // My Scripts
 const dbUtils = require('./server/dbUtils');
-const locker = require('./server/objects/PrimeLocker');
 const PrimeLockers = require('./server/PrimeLockers');
 
 console.log("Set.");
@@ -24,12 +22,6 @@ await dbUtils.init().catch(function(err) {
     console.error(err);
     process.exit(1);
 });
-
-//-------------------------------------
-// Driver Setup
-//-------------------------------------
-let lockerA = new locker(pinout.A);
-let lockerB = new locker(pinout.B);
 
 //-------------------------------------
 // Express Configuration
