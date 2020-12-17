@@ -50,7 +50,8 @@ function initLockerTable() {
                 id TINYTEXT NOT NULL PRIMARY KEY,
                 checked_out BOOLEAN NOT NULL,
                 user TINYTEXT,
-                pass SMALLINT
+                pass SMALLINT,
+                reserve_date TIMESTAMP
             );
         `;
         DB.exec(createTable, function(err) {
@@ -97,6 +98,7 @@ function generateLocker(locker) {
         newLocker.push(`(
             "${locker.id + k}",
             ${false},
+            ${null},
             ${null},
             ${null}
         )`);
