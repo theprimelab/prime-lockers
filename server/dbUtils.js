@@ -11,31 +11,27 @@ var DB;
 // ----------------------------------------------
 /**
  * Initializes the locker database
- * @returns {Promise}
  */
 function init() {
-    return new Promise(function(resolve, reject) {
-        if(!lockers) {
-            reject();
+    if(!lockers) {
+        throw "No lockers defined in config."
+    }
+
+    DB = new sqlite3.Database(DB_PATH, async function(err) {
+        if(err) {
+            console.error(err);
+            throw err;
         }
+        console.log("Connected to database at " + DB_PATH);
 
-        DB = new sqlite3.Database(DB_PATH, async function(err) {
-            if(err) {
-                console.error(err);
-                reject(err);
-            }
-            console.log("Connected to database at " + DB_PATH);
-
-            await initLockerTable().catch(function(err) {
-                reject(err);
-            });
-            await initLockerRows().catch(function(err) {
-                reject(err);
-            });
-
-            console.log("Locker DB Ready!");
-            resolve();
+        await initLockerTable().catch(function(err) {
+            throw err;
         });
+        await initLockerRows().catch(function(err) {
+            throw err;
+        });
+
+        console.log("Locker DB Ready!");
     });
 }
 
@@ -105,4 +101,9 @@ function generateLocker(locker) {
     }
 
     return newLocker.join(", ");
+}
+
+
+module.exports = {
+    init: init
 }

@@ -18,10 +18,12 @@ const { version } = require('./package.json');
 // ----------------------------------------------
 // Database Initialization
 // ----------------------------------------------
-await dbUtils.init().catch(function(err) {
+try {
+    dbUtils.init();
+} catch(err) {
     console.error(err);
     process.exit(1);
-});
+};
 
 //-------------------------------------
 // Express Configuration
