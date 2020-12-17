@@ -2,11 +2,19 @@
     "lockers": [
         {
             "id": "A",
-            "size": 8
+            "size": 8,
+            "pins": {
+                "lock": 17,
+                "sel": ["27, 22"]
+            }
         },
         {
             "id": "B",
-            "size": 8
+            "size": 8,
+            "pins": {
+                "lock": 16,
+                "sel": ["20, 21"]
+            }
         }
     ]
 }
