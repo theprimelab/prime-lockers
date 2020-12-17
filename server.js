@@ -6,6 +6,7 @@ const express = require('express');
 const http = require('http');
 
 // My Scripts
+const dbUtils = require('./server/dbUtils');
 const locker = require('./server/objects/PrimeLocker');
 const PrimeLockers = require('./server/PrimeLockers');
 
@@ -15,23 +16,14 @@ console.log("Set.");
 // Constants
 //-------------------------------------
 const { version } = require('./package.json');
-const pinout = {
-    buzzer: new GPIO(5, 'out'),
-    A: {
-        lock: new GPIO(17, 'out'),
-        select: [
-            new GPIO(27, 'out'),
-            new GPIO(22, 'out')
-        ]
-    },
-    B: {
-        lock: new GPIO(16, 'out'),
-        select: [
-            new GPIO(20, 'out'),
-            new GPIO(21, 'out')
-        ]
-    }
-}
+
+// ----------------------------------------------
+// Database Initialization
+// ----------------------------------------------
+await dbUtils.init().catch(function(err) {
+    console.error(err);
+    process.exit(1);
+});
 
 //-------------------------------------
 // Driver Setup
