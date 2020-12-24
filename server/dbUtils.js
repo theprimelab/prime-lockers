@@ -104,6 +104,29 @@ function generateLocker(locker) {
 }
 
 
+// ----------------------------------------------
+// Utilities
+// ----------------------------------------------
+/**
+ * Returns a full locker row from the given ID
+ * @param {String} lockerId - ID of locker
+ * @returns {Promise}
+ */
+function getRow(lockerId) {
+    return new Promise(function(resolve, reject) {
+        const query = "SELECT * FROM locker WHERE id = ?";
+        DB.get(query, [lockerId], (err, row) => {
+            if(err) {
+                console.error("Failed to retrieve locker: ", err);
+                reject(err);
+            }
+
+            resolve(row);
+        });
+    });
+}
+
 module.exports = {
-    init: init
+    init: init,
+    getRow: getRow
 }
