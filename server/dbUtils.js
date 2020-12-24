@@ -124,7 +124,32 @@ function getRow(lockerId) {
     });
 }
 
+/**
+ * Updates a locker row with a new reservation
+ * @param {String} lockerId - ID of locker
+ * @param {*} reservation - locker reservation details
+ */
+function updateRow(lockerId, reservation) {
+    return new Promise(function(resolve, reject) {
+        const query = `
+            UPDATE locker 
+            SET checked_out = ?,
+                pass = ?,
+                reserve_date = ?
+            WHERE id = ?`;
+        let params = [reservation.checkedOut, reservation.pass, reservation.date];
+        DB.run(query, params, function(err) {
+            if(err) {
+                console.error("Failed to update locker: ", err);
+                reject(err);
+            }
+            resolve();
+        });
+    });
+}
+
 module.exports = {
     init: init,
-    getRow: getRow
+    getRow: getRow,
+    updateRow: updateRow
 }
