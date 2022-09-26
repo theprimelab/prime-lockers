@@ -18,8 +18,8 @@
   "homepage": "https://github.com/reeeeeee-dev/prime-locker#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "pm2": "^4.5.0",
-    "pm2-health": "^1.11.8",
+    "pm2": "^5.2.0",
+    "pm2-health": "^1.12.10",
     "sqlite3": "^5.0.0"
   }
 }
